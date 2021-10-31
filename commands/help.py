@@ -20,8 +20,7 @@ async def help(ctx: tanjun.abc.Context, bot: hikari.traits.GatewayBotAware = tan
     embed.add_field(name="Commands", value=msg)
     embed.add_field(name="Links:", value="[Github Repository](https://github.com/ELWAER-M/Termux-Bot)\n[Termux Discord Server](https://discord.gg/HXpF69X)")
     
-
-    await ctx.respond(embed=embed)
+    await ctx.respond(embed=embed, reply=True)
 
 @tanjun.as_loader
 def load_examples(client: tanjun.abc.Client) -> None:
