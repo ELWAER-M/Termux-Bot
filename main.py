@@ -19,7 +19,6 @@ bot = hikari.GatewayBot(
 client = tanjun.Client.from_gateway_bot(
             bot,
             declare_global_commands=True,
-            mention_prefix=True
         ).add_prefix(prefix).load_modules(*Path("./commands").glob("**/*.py"))
 
 @bot.listen()

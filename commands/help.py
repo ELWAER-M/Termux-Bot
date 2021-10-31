@@ -17,7 +17,8 @@ async def help(ctx: tanjun.abc.Context, bot: hikari.traits.GatewayBotAware = tan
 
     embed = hikari.Embed()
     embed.set_author(name=bot.get_me().username, icon=bot.get_me().avatar_url)
-    embed.add_field(name="Commands", value=msg)
+    embed.add_field(name="Prefix:", value=f"`{''.join(ctx.client.prefixes)}`")
+    embed.add_field(name="Commands:", value=msg)
     embed.add_field(name="Links:", value="[Github Repository](https://github.com/ELWAER-M/Termux-Bot)\n[Termux Discord Server](https://discord.gg/HXpF69X)")
     
     await ctx.respond(embed=embed, reply=True)
