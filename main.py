@@ -12,8 +12,8 @@ prefix = config["prefix"]
 
 bot = hikari.GatewayBot(
         token=token,
-        banner=None
-        # logs="ERROR"
+        banner=None,
+        logs="ERROR"
         )
 
 client = tanjun.Client.from_gateway_bot(
