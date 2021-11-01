@@ -7,8 +7,6 @@ root = repos["termux-root-packages"]
 science = repos["science-packages"]
 game = repos["game-packages"]
 x11 = repos["x11-packages"]
-archs = ["aarch64", "arm", "i686", "x86_64"]
-all_repos = ["main", "root", "science", "game", "x11"]
 
 def fetch(pkg_name, arch, repo):
     try:

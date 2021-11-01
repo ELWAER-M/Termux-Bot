@@ -4,15 +4,26 @@ from modules import github_build
 
 component = tanjun.Component()
 
+
 @component.with_command
 @tanjun.as_message_command("download")
+async def download_msg(ctx: tanjun.abc.MessageContext, /) -> None:
+    await download(ctx)
+
+@component.with_slash_command
+@tanjun.as_slash_command("download", "Termux download mirrors.")
+async def download_slash(ctx: tanjun.abc.SlashContext) -> None:
+    await download(ctx)
+
 async def download(ctx: tanjun.abc.Context, /) -> None:
+    gh = github_build.last_build()
+
     embed = hikari.Embed(
             title="Download Termux",
-            description=f"[F-Droid](https://f-droid.org/packages/com.termux/) (Recommended)\n[Last Github Builds]({github_build.last_build()})"
+            description=f"[F-Droid](https://f-droid.org/packages/com.termux/) (Recommended)\n[Last Github Builds]({gh})"
             )
 
-    await ctx.respond(embed=embed, reply=True)
+    await ctx.respond(embed=embed)
 
 @tanjun.as_loader
 def load_examples(client: tanjun.abc.Client) -> None:
