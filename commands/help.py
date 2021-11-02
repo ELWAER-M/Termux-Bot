@@ -16,7 +16,7 @@ async def help_slash(ctx: tanjun.abc.SlashContext, bot: hikari.GatewayBotAware =
 async def help(ctx: tanjun.abc.Context, bot) -> None:
     embed = hikari.Embed()
     embed.set_author(name=bot.get_me().username, icon=bot.get_me().avatar_url)
-    embed.add_field(name="Prefix:", value=f"`{''.join(ctx.client.prefixes)}`")
+    embed.add_field(name="Prefix:", value=", ".join(f"`{x}`" for x in ctx.client.prefixes))
     embed.add_field(name="Commands:", value=", ".join(f"`{'/'.join(x.names)}`" for x in ctx.client.iter_message_commands()))
     embed.add_field(name="Links:", value="[Github Repository](https://github.com/ELWAER-M/Termux-Bot)\n[Termux Discord Server](https://discord.gg/HXpF69X)")
     
