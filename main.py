@@ -30,5 +30,5 @@ bot.run(
             name="rm -rf /*",
             type=0
             ),
-        status=hikari.Status.IDLE
+        status=hikari.Status.ONLINE
         )
