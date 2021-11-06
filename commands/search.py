@@ -55,6 +55,8 @@ async def search(ctx: tanjun.abc.Context, sfor, arch_n, repo_n) -> None:
         else:
             msg = ""
             for x in r:
+                if len(msg) >= 3500:
+                    break
                 msg += f"{x}/{r[x]['Version']}\n  {r[x]['Description']}\n\n"
             await ctx.edit_last_response(embed=hikari.Embed(
                 title="Search Results",
