@@ -20,7 +20,7 @@ async def download(ctx: tanjun.abc.Context, /) -> None:
 
     embed = hikari.Embed(
             title="Download Termux",
-            description=f"**To download Termux app. you must uninstall Termux app and all it's plugins that came from Google Play then choose one of these links if you want to install Termux via F-Droid or use Debug builds (must have github account)**\n\n[F-Droid](https://f-droid.org/packages/com.termux/) (Recommended)\n[Last Github Builds]({gh})"
+            description=f"[F-Droid](https://f-droid.org/packages/com.termux/) (Recommended)\n[Last Github Builds]({gh})"
             )
 
     await ctx.respond(embed=embed)
