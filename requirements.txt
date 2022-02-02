@@ -1,0 +1,4 @@
+hikari==2.0.0.dev105
+hikari-tanjun==2.3.0a1
+motor==2.5.1
+requests==2.27.1
