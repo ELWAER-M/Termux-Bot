@@ -10,7 +10,7 @@ async def playstore_msg(ctx: tanjun.abc.MessageContext, /) -> None:
     await playstore(ctx)
 
 @component.with_slash_command
-@tanjun.as_slash_command("playstore", "Information about what happening with play store version of termux")
+@tanjun.as_slash_command("playstore", "Information about what happening with play store version of termux.")
 async def playstore_slash(ctx: tanjun.abc.SlashContext) -> None:
     await playstore(ctx)
 
@@ -34,6 +34,4 @@ In replacement for https://github.com/termux/termux-packages/issues/6726.
         """
         ))
 
-@tanjun.as_loader
-def load_examples(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+load_command = component.make_loader()

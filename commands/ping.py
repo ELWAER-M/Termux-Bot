@@ -28,6 +28,4 @@ async def ping(ctx: tanjun.abc.Context, /) -> None:
         color="#00ff00"
         ))
 
-@tanjun.as_loader
-def load_examples(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+load_command = component.make_loader()

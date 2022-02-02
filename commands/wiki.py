@@ -32,6 +32,4 @@ async def wiki(ctx: tanjun.abc.Context, sfor) -> None:
     else:
         await ctx.respond(embed=hikari.Embed(description="Please enter what you want to search for!", color="#ff0000"))
 
-@tanjun.as_loader
-def load_examples(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+load_command = component.make_loader()

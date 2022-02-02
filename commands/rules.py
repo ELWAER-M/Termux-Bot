@@ -10,7 +10,7 @@ async def rules_msg(ctx: tanjun.abc.MessageContext, /) -> None:
     await rules(ctx)
 
 @component.with_slash_command
-@tanjun.as_slash_command("rules", "Termux discord server rules")
+@tanjun.as_slash_command("rules", "Termux discord server rules.")
 async def rules_slash(ctx: tanjun.abc.SlashContext) -> None:
     await rules(ctx)
 
@@ -48,6 +48,4 @@ little trolling is fine but such behavior that disrupt the conversation aren't t
         """
         ))
 
-@tanjun.as_loader
-def load_examples(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+load_command = component.make_loader()
