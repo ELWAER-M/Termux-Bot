@@ -247,7 +247,7 @@ async def edit_profile(ctx: tanjun.abc.Context, member: hikari.Member, mongo: mo
     await db.update_one({"user_id": member.id}, {"$set": {w: new[:max_len[w]]}})
 
     await ctx.respond(embed=hikari.Embed(
-                        description="Edits saved!, do `$profile` to see theme",
+                        description="Edits saved!, do `$profile` to see them",
                         color="#00ff00"))
 
 load_command = component.make_loader()
