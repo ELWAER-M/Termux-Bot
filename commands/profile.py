@@ -128,7 +128,7 @@ async def profile(ctx: tanjun.abc.Context, member: hikari.Member, mongo: motor.A
     top_role = member.get_top_role()
 
     embed = hikari.Embed(color=(top_role.color if top_role else None))
-    embed.set_author(name=member.username, icon=member.avatar_url)
+    embed.set_author(name=member.nickname, icon=member.avatar_url)
     embed.set_thumbnail(member.avatar_url)
 
     profile_info_msg = ""
