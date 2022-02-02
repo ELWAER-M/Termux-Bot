@@ -24,7 +24,7 @@ mongoClient = motor.AsyncIOMotorClient(mongoCluster)
 
 client = tanjun.Client.from_gateway_bot(
             bot,
-            declare_global_commands=902550780983275540,
+            declare_global_commands=True,
             ).add_prefix(
                 prefix
             ).load_modules(
