@@ -126,10 +126,11 @@ async def profile(ctx: tanjun.abc.Context, member: hikari.Member, mongo: motor.A
     data = find
     persence = member.get_presence()
     top_role = member.get_top_role()
+    avatar = member.avatar_url if member.avatar_url else member.default_avatar_url
 
     embed = hikari.Embed(color=(top_role.color if top_role else None))
-    embed.set_author(name=member.nickname, icon=member.default_avatar_url)
-    embed.set_thumbnail(member.default_avatar_url)
+    embed.set_author(name=(member.nickname if member.nickname else member.username), icon=avatar)
+    embed.set_thumbnail(avatar)
 
     profile_info_msg = ""
 
