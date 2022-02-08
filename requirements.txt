@@ -4,3 +4,4 @@ motor==2.5.1
 requests==2.27.1
 python-dotenv==0.19.2
 dnspython==2.2.0
+uvloop==0.16.0

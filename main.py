@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 import json
 from pathlib import Path
 import motor.motor_asyncio as motor
+import uvloop
+
+uvloop.install()
 
 load_dotenv()
 token = os.environ.get("BOT_TOKEN")
