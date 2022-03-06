@@ -1,3 +1,4 @@
+from re import split
 import hikari
 import tanjun
 from modules import package_fetcher
@@ -47,11 +48,13 @@ async def pkg(ctx: tanjun.abc.Context, pkg_n, arch_n, repo_n) -> None:
             pkg_embed.add_field(name="Package name:", value=r[pkg_n]["Package"])
             pkg_embed.add_field(name="Description:", value=r[pkg_n]["Description"])
             pkg_embed.add_field(name="Version:", value=r[pkg_n]["Version"])
-            # pkg_embed.add_field(name="Dependencies:", value=r[pkg_n]["Depends"])
+            if "Depends" in r[pkg_n]:
+                pkg_embed.add_field(name="Dependencies:", value=", ".join(f"`{x}`" for x in r[pkg_n]["Depends"].split(", ")))
             pkg_embed.add_field(name="Size:", value=f'{"{:.2f}".format(int(r[pkg_n]["Size"])/1024/1024)} MB')
             pkg_embed.add_field(name="Maintainer:", value=r[pkg_n]["Maintainer"])
             pkg_embed.add_field(name="Installation:", value=f"```\napt install {r[pkg_n]['Package']}\n```")
             pkg_embed.add_field(name="Links:", value=f"[Homepage]({r[pkg_n]['Homepage']}) | [Download .deb](https://{r['_host']['host']}{getattr(package_fetcher, repo_n)['repo_url']}/{r[pkg_n]['Filename']})")
+            pkg_embed.set_footer(text=f"Connected to {r['_host']['host']}")
             await ctx.edit_last_response(embed=pkg_embed)
         else:
             await ctx.edit_last_response(embed=hikari.Embed(

@@ -5,7 +5,7 @@ repos = json.load(open("modules/repos.json", "r"))
 main = repos["termux-packages"]
 root = repos["termux-root-packages"]
 x11 = repos["x11-packages"]
-hosts = ["packages.termux.org", "packages-cf.termux.org", "termux.librehat.com", "termux.mentality.rip"]
+hosts = ["packages.termux.org", "packages-cf.termux.org", "termux.astra.in.ua", "termux.librehat.com", "termux.sahilister.in"]
 
 def fetch(arch, repo):
     for host in hosts:
