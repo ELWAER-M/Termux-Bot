@@ -1,0 +1,42 @@
+{
+	"packages-cf.termux.org": {
+		"main": ["https://packages-cf.termux.org/apt/termux-main", "stable", "main"],
+		"root": ["https://packages-cf.termux.org/apt/termux-root", "root", "stable"],
+		"x11": ["https://packages-cf.termux.org/apt/termux-x11", "x11", "main"]
+	},
+	"grimler.se": {
+		"main": ["https://grimler.se/termux/termux-main", "stable", "main"],
+		"root": ["https://grimler.se/termux/termux-root", "root", "stable"],
+		"x11": ["https://grimler.se/termux/termux-x11", "x11", "main"]
+	},
+	"termux.mentality.rip": {
+		"main": ["https://termux.mentality.rip/termux-main", "stable", "main"],
+		"root": ["https://termux.mentality.rip/termux-root", "root", "stable"],
+		"x11": ["https://termux.mentality.rip/termux-x11", "x11", "main"]
+	},
+	"termux.astra.in.ua": {
+		"main": ["https://termux.astra.in.ua/apt/termux-main", "stable", "main"],
+		"root": ["https://termux.astra.in.ua/apt/termux-root", "root", "stable"],
+		"x11": ["https://termux.astra.in.ua/apt/termux-x11", "x11", "main"]
+	},
+	"termux.librehat.com": {
+		"main": ["https://termux.librehat.com/apt/termux-main", "stable", "main"],
+		"root": ["https://termux.librehat.com/apt/termux-root", "root", "stable"],
+		"x11": ["https://termux.librehat.com/apt/termux-x11", "x11", "main"]
+	},
+	"mirror.mwt.me": {
+		"main": ["https://mirror.mwt.me/termux/main", "stable", "main"],
+		"root": ["https://mirror.mwt.me/termux/root", "root", "stable"],
+		"x11": ["https://mirror.mwt.me/termux/x11", "x11", "main"]
+	},
+	"plug-mirror.rcac.purdue.edu": {
+		"main": ["https://plug-mirror.rcac.purdue.edu/termux/termux-main", "stable", "main"],
+		"root": ["https://plug-mirror.rcac.purdue.edu/termux/termux-root", "root", "stable"],
+		"x11": ["https://plug-mirror.rcac.purdue.edu/termux/termux-x11", "x11", "main"]
+	},
+	"termux.sahilister.in": {
+		"main": ["https://termux.sahilister.in/apt/termux-main", "stable", "main"],
+		"root": ["https://termux.sahilister.in/apt/termux-root", "root", "stable"],
+		"x11": ["https://termux.sahilister.in/apt/termux-x11", "x11", "main"]
+	}
+}
