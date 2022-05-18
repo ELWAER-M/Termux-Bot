@@ -1,17 +1,13 @@
 import requests
 import json
 
-repos = json.load(open("modules/repos.json", "r"))
-main = repos["termux-packages"]
-root = repos["termux-root-packages"]
-x11 = repos["x11-packages"]
-hosts = ["packages.termux.org", "packages-cf.termux.org", "termux.astra.in.ua", "termux.librehat.com", "termux.sahilister.in"]
+mirrors = json.load(open("mirrors.json", "r"))
 
 def fetch(arch, repo):
-    for host in hosts:
+    for mirror in mirrors:
         try:
-            pkg_ls = requests.get(f"https://{host}{repo['repo_url']}/dists/{repo['distribution']}/{repo['component']}/binary-{arch}/Packages", stream=True, timeout=10).content.decode("utf-8").splitlines()
-            info = {"_host": {"host": host}}
+            pkg_ls = requests.get(f"{mirrors[mirror][repo][0]}/dists/{mirrors[mirror][repo][1]}/{mirrors[mirror][repo][2]}/binary-{arch}/Packages", stream=True, timeout=10).content.decode("utf-8").splitlines()
+            info = {"_host": {"host_name": mirror, "url": mirrors[mirror][repo][0]}}
             for idx, i in enumerate(pkg_ls):
                 if "Package:" in i:
                     info[i.split(": ")[1]] = {}

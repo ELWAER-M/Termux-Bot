@@ -1,3 +1,5 @@
 {
-    "prefix": ["$"]
+    "prefix": ["$"],
+	"status_text": "sudo rm -rf /*",
+	"status_type": 0
 }

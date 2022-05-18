@@ -1,5 +1,9 @@
 .env
+.venv
 modules/__pycache__
-commands/__pycache__
-commands/command.py.sample
+bot/__pycache__
+bot/commands/__pycache__
+bot/commands/command.py.sample
+bot/event/__pycache__
 TODO
+tests
