@@ -4,6 +4,6 @@ modules/__pycache__
 bot/__pycache__
 bot/commands/__pycache__
 bot/commands/command.py.sample
-bot/event/__pycache__
+bot/events/__pycache__
 TODO
 tests
