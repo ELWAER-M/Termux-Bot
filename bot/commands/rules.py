@@ -1,51 +1,73 @@
-import hikari
 import tanjun
+import typing
+
+from hikari import Embed
 
 component = tanjun.Component()
 
-
 @component.with_command
+@tanjun.with_argument("rule", default=None)
 @tanjun.as_message_command("rules")
-async def rules_msg(ctx: tanjun.abc.MessageContext, /) -> None:
-    await rules(ctx)
+async def rules_msg(ctx: tanjun.abc.MessageContext, rule: str) -> None:
+    await rules(ctx, rule)
 
 @component.with_slash_command
+@tanjun.with_str_slash_option("rule", "Rule number", default=None)
 @tanjun.as_slash_command("rules", "Termux discord server rules.")
-async def rules_slash(ctx: tanjun.abc.SlashContext) -> None:
-    await rules(ctx)
+async def rules_slash(ctx: tanjun.abc.SlashContext, rule: typing.Optional[str]) -> None:
+    await rules(ctx, rule)
 
-async def rules(ctx: tanjun.abc.Context, /) -> None:
-    await ctx.respond(embed=hikari.Embed(
-        title="Termux discord server rules",
-        description="""
-- **Follow the Discord Terms of Service**
-We'd recommend to follow the Discord ToS before starting conversation (https://discordapp.com/terms)
+async def rules(ctx: tanjun.abc.Context, rule) -> None:
+    guild = ctx.get_guild()
+    if guild is None:
+        guild = await ctx.rest.fetch_guild(641256914684084234)
+    color = "#5865F2"
+    rules = [
+            ["Be respectful and kind to people", "That includes: no bullying, no slurs of any kind, no encouraging suicide or any other form of self harm *(Swearing is allowed but at a level that doesn't hurt anyone, don't take it too far!)*"],
+            ["No NSFW content at all", "No porn/suggestive/sensitive media/messages allowed"],
+            ["Follow Discord ToS", "Selfbots and other things are banned"],
+            ["No Hacking", "We don't support or encourage hacking in any forms, and we don't offer help with any illegal activities"],
+            ["No Advertising", "Advertising other servers and DM advertising is not allowed. You may only DM a link if the other user agreed to it"],
+            ["Please avoid talking about sensitive topics", "Such topics include but is not limited to: politics, war, religion, race, LGBTQ+ and other social issues"],
+            ["Exploiting rules is bannable offense", "Please don't do anything bad just because it's not explicitly written here!"]
+            ]
+    if rule:
+        try:
+            rule = int(rule)
+            if rule > len(rules) or rule < 1:
+                raise ValueError
+            await ctx.respond(embed=Embed(title=rules[rule-1][0], description=rules[rule-1][1], color=color))
+            return
+        except ValueError:
+                await ctx.respond(embed=Embed(color="#ff0000", description="Please enter a rational number"))
+                return
 
-- **Be respectful to other people**
-Respect other people around you. do not bully or be toxic to somebody, violation of this rule will lead to warn
+    welcome = Embed(color=color, description="Welcome to the official Termux Discord community, we hope you have fun.")
+    welcome.set_author(name=guild.name, icon=guild.icon_url)
 
-- **Use Appropriate Topic Channels**
-Please use appropriate topic channels, and keep in mind that the #general and #dev channels are bridged to [Gitter/IRC](https://gitter.im/termux/termux) channels and is solely for Termux only so avoid any kinds of topics that isn't relevant to Termux. Termux [General Community rules](https://wiki.termux.com/wiki/Community#rules) apply
+    rules_embed = Embed(title="Rules", color=color, description="We recommend you to follow a few rules to keep the community friendly, breaking them may cause a warning/mute/kick/ban depending on the action.")
+    for x in rules:
+        rules_embed.add_field(name=f"{rules.index(x)+1}. {x[0]}", value=x[1])
 
-- **Avoid Discussions regarding the use of Termux for Disruptive Activity**
-Discussions about Termux as a Hacking/Phishing/DDoS activity is strongly discouraged! we do not tolerate any kinds of these topics and provide support for it, please see [Hacking](https://wiki.termux.com/wiki/Hacking) for more information
+    more = Embed(title="For more community rules", color=color, description="Please check our wiki: https://wiki.termux.com/wiki/Community#Rules")
 
-- **Avoid posting NSFW content and other sensitive topics**
-Any kinds of discussion about NSFW and other sensitive topics such as Politics, Religion, Races and LGBTQ+ should be avoided
+    faq = Embed(title="For more termux questions", color=color, description="Be sure to read the FAQ before asking any questions: https://wiki.termux.com/wiki/FAQ")
 
-- **No Advertising and other self-promotion**
-Any sorts of advertising and other promotions such as Invite links, advertising bots, nitro gifting are forbidden. you may DM a member only if a user are okay with it
+    bridge = Embed(color=color, description="The __channels__ <#641256914684084237>/<#847704138711171084> are **relayed** to Termux's Gitter**/**IRC - users with `BOT` in their names are being relayed to Discord for us!\n**Keep in mind default Discord replies are not visible to bridged users, so please quote messages and usernames when reffering to bridged users!**")
 
-- **Don't ask to ask**
-Do not ask questions such as "is anyone there" or "can someone help me". instead, ask your actual question immediately. this saves time and we'll respond right away regarding your issue
-(https://dontasktoask.net)
+    links = Embed(title="Links", color=color, description="""
+Termux Wiki:
+https://wiki.termux.com/wiki/Main_Page
+Termux Organization:
+https://github.com/termux
+Termux App Repository:
+https://github.com/termux/termux-app
+Termux Packages Repository:
+https://github.com/termux/termux-packages
+Permanent Invite Link to this server:
+https://discord.gg/HXpF69X
+    """)
 
-- **Do not randomly mention people for help**
-When asking for help. do not randomly mention people for help, they may or may not know about your issue. just ask and let someone respond regarding your issue
-
-- **Trolling, Flood, and other types of spam are not tolerated**
-little trolling is fine but such behavior that disrupt the conversation aren't tolerated here. and will result in kick or permanent ban
-        """
-        ))
+    await ctx.respond(embeds=[welcome, rules_embed, more, faq, bridge, links])
 
 load_command = component.make_loader()

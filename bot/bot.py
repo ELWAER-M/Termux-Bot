@@ -14,7 +14,7 @@ def create_bot() -> hikari.impl.GatewayBot:
 
     bot = hikari.GatewayBot(
             token=str(token),
-            logs="ERROR",
+            # logs="ERROR",
             banner=None,
             intents=hikari.Intents.ALL
             )
