@@ -49,9 +49,9 @@ async def rules(ctx: tanjun.abc.Context, rule) -> None:
     for x in rules:
         rules_embed.add_field(name=f"{rules.index(x)+1}. {x[0]}", value=x[1])
 
-    more = Embed(title="For more community rules", color=color, description="Please check our wiki: https://wiki.termux.com/wiki/Community#Rules")
+    more = Embed(title="For more community rules", color=color, description="Please check our wiki:\nhttps://wiki.termux.com/wiki/Community#Rules")
 
-    faq = Embed(title="For more termux questions", color=color, description="Be sure to read the FAQ before asking any questions: https://wiki.termux.com/wiki/FAQ")
+    faq = Embed(title="For more termux questions", color=color, description="Be sure to read the FAQ before asking any questions:\nhttps://wiki.termux.com/wiki/FAQ")
 
     bridge = Embed(color=color, description="The __channels__ <#641256914684084237>/<#847704138711171084> are **relayed** to Termux's Gitter**/**IRC - users with `BOT` in their names are being relayed to Discord for us!\n**Keep in mind default Discord replies are not visible to bridged users, so please quote messages and usernames when reffering to bridged users!**")
 
