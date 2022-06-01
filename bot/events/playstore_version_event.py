@@ -7,6 +7,7 @@ import requests
 from PIL import Image
 import pytesseract
 
+pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
 config = r"--psm 6 --oem 0"
 filtered = ["N: Metadata integrity can't be verified", "N: Possible cause: repository is under maintenance", "(wrong sources.list URL?)"]
 warn_embed = Embed(
