@@ -1,7 +1,9 @@
+import hikari
 import tanjun
 import typing
 
 from hikari import Embed
+from hikari import ButtonStyle
 
 component = tanjun.Component()
 
@@ -68,6 +70,19 @@ Permanent Invite Link to this server:
 https://discord.gg/HXpF69X
     """)
 
-    await ctx.respond(embeds=[welcome, rules_embed, more, faq, bridge, links])
+    buttons = ctx.rest.build_action_row()
+    (
+        buttons
+        .add_button(ButtonStyle.SUCCESS, "tect1")
+        .set_label("I Agree")
+        .set_emoji("✅")
+        .add_to_container()
+        .add_button(ButtonStyle.DANGER, "test2")
+        .set_label("I Do Not Agree")
+        .set_emoji("❌")
+        .add_to_container()
+    )
+
+    await ctx.respond(embeds=[welcome, rules_embed, more, faq, bridge, links], components=[buttons])
 
 load_command = component.make_loader()
