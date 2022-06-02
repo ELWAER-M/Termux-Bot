@@ -1,14 +1,17 @@
 import hikari
 import tanjun
 from hikari import Embed
+import os
 
 import io
 import requests
 from PIL import Image
 import pytesseract
 
-pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
-config = r"--psm 6 --oem 0"
+if "DYNO" in os.environ:
+    pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+
+config = r"--psm 6"
 filtered = ["N: Metadata integrity can't be verified", "N: Possible cause: repository is under maintenance", "(wrong sources.list URL?)"]
 warn_embed = Embed(
         title="Termux on playstore",
